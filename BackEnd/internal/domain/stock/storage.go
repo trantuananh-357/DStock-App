@@ -1,4 +1,4 @@
-package stock
+package domain
 
 type Storage interface {
 	GetOne(uuid string) *Stock
