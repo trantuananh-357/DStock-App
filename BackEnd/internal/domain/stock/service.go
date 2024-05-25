@@ -1,10 +1,12 @@
 package domain
 
-import "context"
+import (
+	"github.com/labstack/echo"
+)
 
 type Service interface {
-	GetStockByUUID(ctx context.Context, uuid string) *Stock
-	GetAllStock(ctx context.Context, limit, offset int) []*Stock
+	GetStockByUUID(ctx echo.Context, uuid string) *Stock
+	GetAllStock(ctx echo.Context, limit, offset int) []*Stock
 }
 
 type service struct {
@@ -16,10 +18,10 @@ func newService(storage Storage) Service {
 }
 
 // GetAllStock implements Service.
-func (s *service) GetAllStock(ctx context.Context, limit int, offset int) []*Stock {
+func (s *service) GetAllStock(ctx echo.Context, limit int, offset int) []*Stock {
 	return s.storage.GetAll(limit, offset)
 }
 
-func (s *service) GetStockByUUID(ctx context.Context, uuid string) *Stock {
+func (s *service) GetStockByUUID(ctx echo.Context, uuid string) *Stock {
 	return s.storage.GetOne(uuid)
 }

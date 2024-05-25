@@ -1,7 +1,6 @@
 package postgresql
 
 import (
-	"fmt"
 	"log"
 
 	"gorm.io/driver/postgres"
@@ -15,9 +14,10 @@ func init() {
 	}
 	sqlDB, err := db.DB()
 	if err != nil {
-		fmt.Errorf("failed to get generic database object: %w", err)
+		log.Fatal("failed to get generic database object: %w", err)
 	}
 	if err := sqlDB.Ping(); err != nil {
-		fmt.Errorf("failed to ping database: %w", err)
+		log.Fatal("failed to ping database: %w", err)
 	}
+	log.Println("Successfully connected to the database")
 }

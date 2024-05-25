@@ -6,3 +6,4 @@ type Storage interface {
 	Create(stock *Stock) (*Stock, error)
 	Delete(uuid string) error
 }
+
